@@ -504,6 +504,9 @@ struct VMeshData (
 
 						vertexIndex = findItem groupHashes vertexHash
 
+						-- Safety check in case of hash collision
+						if vertexIndex > 0 and (not close_enough positions[vertexIndex].x vertexPosition.x 10 or not close_enough positions[vertexIndex].y vertexPosition.y 10 or not close_enough positions[vertexIndex].z vertexPosition.z 10) then vertexIndex = 0
+
 						-- When no match was found add vertex attribute to buffer
 						if vertexIndex == 0 then (
 							if vertexCount >= 0xFFFF then throw "Too many VMeshData vertices"

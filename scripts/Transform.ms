@@ -283,7 +283,7 @@ plugin TransformController SphericJointController name:"Spheric Joint" classID:#
 	)
 
 	-- Figure out if offset is preTranslate
-	on getValue do translate (rotation.value as matrix3) position
+	on getValue do preTranslate (translate (rotation.value as matrix3) position) -offset
 
 	on setValue absolute relative commit do (
 		position = absolute.translationpart
